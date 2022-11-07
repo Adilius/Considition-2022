@@ -34,8 +34,6 @@ def main():
 
 
 def step(
-    mapName="Suburbia",
-    recycleRefundChoice=True,
     bagPrice=10,
     refundAmount=1,
     bagType=1,
@@ -75,8 +73,8 @@ def step(
 ):
     # Create solution
     solution = {
-        "mapName":mapName,
-        "recycleRefundChoice":recycleRefundChoice,
+        "mapName": "Suburbia",
+        "recycleRefundChoice":True,
         "bagPrice":bagPrice,
         "refundAmount":refundAmount,
         "bagType":bagType,

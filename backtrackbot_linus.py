@@ -26,5 +26,5 @@ def take_step(bagPrice, refundAmount, bagType, orders, previous_score):
 if __name__ == "__main__":
     previous_score = -99999
     bagPrice, refundAmount, bagType, = (1, 1,1)
-    orders = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    orders = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     take_step(bagPrice, refundAmount, bagType, orders, previous_score)
