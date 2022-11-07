@@ -94,6 +94,7 @@ def step(
         return int(response.json()["score"])
     else:
         print(response.json())
+        return None
 
 
 if __name__ == "__main__":
