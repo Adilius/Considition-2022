@@ -89,7 +89,7 @@ def step(
     response = requests.post("https://api.considition.com/api/game/" + "submit",
                              headers={"x-api-key": api_key}, verify=True, json=json.loads(solution))
     if response.status_code == 200:
-        print("Game OK!")
+        #print("Game OK!")
         print("Score:", response.json()["score"])
         return int(response.json()["score"])
     else:
