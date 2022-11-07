@@ -48,7 +48,7 @@ def submit_game(api_key, solution):
         print("Something went wrong with the request: " + str(e))
 
 def print_submit_game(submit_game_response: dict):
-    submit_game_response.pop("weekly", None)
+    submit_game_response.pop("dailys", None)
     print("Result: \n",json.dumps(submit_game_response, sort_keys=True, indent=4))
 
 def game_data(game_id: str) -> dict:
