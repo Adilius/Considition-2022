@@ -56,13 +56,17 @@ def step(
      # Submit solution and get response
     response = requests.post("https://api.considition.com/api/game/" + "submit",
                              headers={"x-api-key": api_key}, verify=True, json=json.loads(solution))
-    if response.status_code == 200:
-        #print("Game OK!")
-        print("Score:", response.json()["score"])
-        return int(response.json()["score"])
-    else:
-        print(response.json())
-        return None
+    print(response.text)
+    try:
+        if response.status_code == 200:
+            #print("Game OK!")
+            print("Score:", response.json()["score"])
+            return int(response.json()["score"])
+        else:
+            print(response.json())
+            return None
+    except:
+        print("Server response bad")
 
 
 if __name__ == "__main__":

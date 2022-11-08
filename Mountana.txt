@@ -1,4 +1,4 @@
-Max score: 170169
+Max score: -3078874
 Bag type: 2
 Bag price: 1
 Refund amount: 1

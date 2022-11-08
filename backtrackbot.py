@@ -11,8 +11,8 @@ sys.setrecursionlimit(9001) # OVER NINE THOUSAND recursions!!
 DAYS = 365
 ORDER_OF_OPERATIONS = list(range(1, 4+DAYS*2+1))
 random.shuffle(ORDER_OF_OPERATIONS)
-#print(ORDER_OF_OPERATIONS)
 
+RATE_OF_CHANGE = 5
 
 counter = 0
 counter_max = 10
@@ -55,8 +55,8 @@ def take_step(bagPrice, refundAmount, orders, previous_score, previous_move, cur
         bagPrice = stored_bagPrice
         refundAmount = stored_refundAmount
         orders = stored_orders
-        print(f'Setting new params')
-        print(f'{bagPrice=} {refundAmount=} {orders=}')
+        # print(f'Setting new params')
+        # print(f'{bagPrice=} {refundAmount=} {orders=}')
         take_step(bagPrice=bagPrice, refundAmount=refundAmount, orders=orders, previous_score = max_score, previous_move = previous_move, current_oop = current_oop)
 
 
@@ -83,8 +83,8 @@ def take_step(bagPrice, refundAmount, orders, previous_score, previous_move, cur
 
 
 
-    print(f"Counter: {counter}")
-    print(f"Max score: {max_score}")
+    # print(f"Counter: {counter}")
+    # print(f"Max score: {max_score}")
 
     # If game is invalid
     if reward is None:
@@ -100,23 +100,23 @@ def take_step(bagPrice, refundAmount, orders, previous_score, previous_move, cur
     # Artificial Intelligence
     for i in current_oop:
         if i == 1:
-            bagPrice += 1
+            bagPrice += RATE_OF_CHANGE
             previous_move = i
             take_step(bagPrice=bagPrice, refundAmount=refundAmount, orders=orders, previous_score = reward, previous_move = previous_move, current_oop = current_oop)
         elif i == 2:
             if bagPrice == 0:
                 continue
-            bagPrice -= 1
+            bagPrice -= RATE_OF_CHANGE
             previous_move = i
             take_step(bagPrice=bagPrice, refundAmount=refundAmount, orders=orders, previous_score = reward, previous_move = previous_move, current_oop = current_oop)
         elif i == 3:
-            refundAmount += 1
+            refundAmount += RATE_OF_CHANGE
             previous_move = i
             take_step(bagPrice=bagPrice, refundAmount=refundAmount, orders=orders, previous_score = reward, previous_move = previous_move, current_oop = current_oop)
         elif i == 4:
             if refundAmount == 0:
                 continue
-            refundAmount -= 1
+            refundAmount -= RATE_OF_CHANGE
             previous_move = i
             take_step(bagPrice=bagPrice, refundAmount=refundAmount,  orders=orders, previous_score = reward, previous_move = previous_move, current_oop = current_oop)
         else:
@@ -124,17 +124,17 @@ def take_step(bagPrice, refundAmount, orders, previous_score, previous_move, cur
             # 6,8,10,.... REDUCE ORDER
             if (day % 2) == 0:
                 day = int(day/2)-1
-                #print(f'REDUCE DAY:{day} {i}')
+                # print(f'REDUCE DAY:{day} {i}')
                 if orders[day] == 0:
                     continue
-                orders[day] += -1
+                orders[day] += -RATE_OF_CHANGE
                 previous_move = i
                 take_step(bagPrice=bagPrice, refundAmount=refundAmount,  orders=orders, previous_score = reward, previous_move = previous_move, current_oop = current_oop)
 
             # 5,7,9,... INCREASE ORDER
             else:
                 day = int(day/2)-1
-                orders[day] += 1
+                orders[day] += RATE_OF_CHANGE
                 #print(f'INCREASE DAY:{day} {i}')
                 previous_move = i
                 take_step(bagPrice=bagPrice, refundAmount=refundAmount, orders=orders, previous_score = reward, previous_move = previous_move, current_oop = current_oop)
@@ -142,12 +142,12 @@ def take_step(bagPrice, refundAmount, orders, previous_score, previous_move, cur
 
 if __name__ == "__main__":
     current_oop = ORDER_OF_OPERATIONS
-    previous_score = -9999999999
+    previous_score = -9999999999999
     previous_move = 1
 
-    bagPrice = 10
+    bagPrice = 1
     refundAmount = 1
-    orders = [10] * 365
+    orders = [150] * 365
     #orders = [9, 0, 0, 0, 0, 9, 0, 0, 14, 11, 0, 0, 0, 8, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0]
 
     # Parse command-line arguments
@@ -177,50 +177,18 @@ if __name__ == "__main__":
     map_name = args.map
     bag_type = args.bag
 
-    try:
-        t1 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t2 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t3 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t4 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t5 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t6 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t7 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t8 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t9 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t10 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t11 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t12 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t13 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t14 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t15 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t16 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t17 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t18 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t19 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
-        #t20 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
+    take_step(bagPrice=bagPrice, refundAmount=refundAmount,  orders=orders, previous_score = previous_score, previous_move = previous_move, current_oop = current_oop)
 
-        t1.start()
-        #t2.start()
-        #t3.start()
-        #t4.start()
-        #t5.start()
-        #t6.start()
-        #t7.start()
-        #t8.start()
-        #t9.start()
-        #t10.start()
-        #t11.start()
-        #t12.start()
-        #t13.start()
-        #t14.start()
-        #t15.start()
-        #t16.start()
-        #t17.start()
-        #t18.start()
-        #t19.start()
-        #t20.start()
-
-    except:
-       print("Error: unable to start thread")
+    #try:
+    #    t1 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
+    #    t2 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
+    #    t3 = threading.Thread(target=take_step, args=(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop))
+#
+    #    t1.start()
+    #    t2.start()
+    #    t3.start()
+#
+    #except:
+    #   print("Error: unable to start thread")
 
     #take_step(bagPrice, refundAmount, orders, previous_score, previous_move, current_oop)
