@@ -16,9 +16,9 @@ random.shuffle(ORDER_OF_OPERATIONS)
 
 counter = 0
 counter_max = 10
-max_score = -999999
+max_score = -9999999999
 
-previous_score = -99999
+previous_score = -999999999
 previous_move = 1
 stored_bagPrice = 1
 stored_refundAmount = 1
@@ -142,12 +142,12 @@ def take_step(bagPrice, refundAmount, orders, previous_score, previous_move, cur
 
 if __name__ == "__main__":
     current_oop = ORDER_OF_OPERATIONS
-    previous_score = -99999
+    previous_score = -9999999999
     previous_move = 1
 
-    bagPrice = 1
+    bagPrice = 10
     refundAmount = 1
-    orders = [0] * 365
+    orders = [10] * 365
     #orders = [9, 0, 0, 0, 0, 9, 0, 0, 14, 11, 0, 0, 0, 8, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0]
 
     # Parse command-line arguments
