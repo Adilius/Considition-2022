@@ -34,50 +34,20 @@ def main():
 
 
 def step(
-    bagPrice=10,
-    refundAmount=1,
-    bagType=1,
-    orders=[
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-    ],
+    mapName,
+    bagPrice,
+    refundAmount,
+    bagType,
+    orders,
 ):
+
     # Create solution
     solution = {
-        "mapName": "Suburbia",
+        "mapName": mapName,
         "recycleRefundChoice":True,
         "bagPrice":bagPrice,
         "refundAmount":refundAmount,
-        "bagType":bagType,
+        "bagType": bagType,
         "orders":orders
     }
     solution = json.dumps(solution)
